@@ -127,3 +127,85 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player_name)
+  hash = game_hash
+  for team in hash.keys
+    for player in hash[team][:players]
+      if player[:player_name] == player_name
+        score = player[:points]
+      end
+    end
+  end
+score
+end
+
+def shoe_size(player_name)
+  hash = game_hash
+  for team in hash.keys
+    for player in hash[team][:players]
+      if player[:player_name] == player_name
+        size = player[:shoe]
+      end
+    end
+  end
+size
+end
+
+def team_colors(team_name)
+  hash = game_hash
+  for team in hash.keys
+    if hash[team][:team_name] == team_name
+      colors = hash[team][:colors]
+    end
+  end
+  colors
+end
+
+def team_names
+  hash = game_hash
+  names = []
+  for team in hash.keys
+    names.push hash[team][:team_name]
+  end
+  names
+end
+
+def player_numbers(team_name)
+  hash = game_hash
+  numbers = []
+  for team in hash.keys
+    if hash[team][:team_name] == team_name
+      for player in hash[team][:players]
+        numbers.push(player[:number])
+      end
+    end
+  end 
+  numbers
+end
+
+def player_stats(player_name)
+  hash = game_hash
+  for team in hash.keys
+    for player in hash[team][:players]
+      if player[:player_name] == player_name
+        stats = player
+      end
+    end
+  end
+  stats
+end
+
+def big_shoe_rebounds
+  hash = game_hash
+  max_shoe_size = 0
+  for team in hash.keys
+    for player in hash[team][:players]
+      if player[:shoe] > max_shoe_size
+        max_shoe_size = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
