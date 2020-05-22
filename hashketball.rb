@@ -130,10 +130,11 @@ end
 
 def num_points_scored(player_name)
   hash = game_hash
+  #Iterating through nested hash until finding the right player
   for team in hash.keys
     for player in hash[team][:players]
       if player[:player_name] == player_name
-        score = player[:points]
+        score = player[:points] #updating score to equal that of desired player
       end
     end
   end
@@ -142,10 +143,11 @@ end
 
 def shoe_size(player_name)
   hash = game_hash
+  #Iterating throug nested hash to find the right player
   for team in hash.keys
     for player in hash[team][:players]
       if player[:player_name] == player_name
-        size = player[:shoe]
+        size = player[:shoe] #updating shoe size to equal that of desired player
       end
     end
   end
@@ -154,9 +156,10 @@ end
 
 def team_colors(team_name)
   hash = game_hash
+  #Iterating through nested hash to find the right team
   for team in hash.keys
     if hash[team][:team_name] == team_name
-      colors = hash[team][:colors]
+      colors = hash[team][:colors] #updating color to equal that of the desired team
     end
   end
   colors
@@ -165,8 +168,9 @@ end
 def team_names
   hash = game_hash
   names = []
+  #Iterating through nested hash to get to both team names
   for team in hash.keys
-    names.push hash[team][:team_name]
+    names.push hash[team][:team_name] #pushing team names onto an empty array to be returned
   end
   names
 end
@@ -174,10 +178,11 @@ end
 def player_numbers(team_name)
   hash = game_hash
   numbers = []
+  #Iterating through nested hash to get to the numbers of the players of the desired team
   for team in hash.keys
     if hash[team][:team_name] == team_name
       for player in hash[team][:players]
-        numbers.push(player[:number])
+        numbers.push(player[:number]) #pushing player numbers onto an empty array to be returned
       end
     end
   end 
@@ -186,10 +191,11 @@ end
 
 def player_stats(player_name)
   hash = game_hash
+  #Iterating throug a nested array to get to the right player
   for team in hash.keys
     for player in hash[team][:players]
       if player[:player_name] == player_name
-        stats = player
+        stats = player #saving the stats of the desired player in a 'stats' variable to be returned
       end
     end
   end
@@ -199,10 +205,11 @@ end
 def big_shoe_rebounds
   hash = game_hash
   max_shoe_size = 0
+  #Iterating throug a nested array to get the shoe size of all players
   for team in hash.keys
     for player in hash[team][:players]
-      if player[:shoe] > max_shoe_size
-        max_shoe_size = player[:shoe]
+      if player[:shoe] > max_shoe_size #comparing the current player's shoe size wit the max shoe size and updating the current max if current player's shoe size is larger
+        max_shoe_size = player[:shoe] 
         rebounds = player[:rebounds]
       end
     end
@@ -214,9 +221,10 @@ def most_points_scored
   hash = game_hash
   max_points = 0
   max_player = nil
+  #Iterating through the nested hash to find the points scored by each player
   for team in hash.keys
       for player in hash[team][:players]
-          if player[:points] > max_points
+          if player[:points] > max_points #comparing the points of current player with max points, and updating max points if current player has more points
               max_points = player[:points]
               max_player = player[:player_name]
           end
@@ -252,9 +260,10 @@ def player_with_longest_name
   hash = game_hash
   longest_length = 0
 
+  #Iterating throug nested hash to find all player names
   for team in hash.keys
       for player in hash[team][:players]
-          if player[:player_name].length > longest_length
+          if player[:player_name].length > longest_length #comparing lengt of current player's name with max value and updating max value if current length is larger
               longest_length = player[:player_name].length
               longest_name = player[:player_name]
           end
@@ -267,7 +276,7 @@ def long_name_steals_a_ton?
   hash = game_hash
   longest_name = player_with_longest_name
   
-  #Finding max number of steals
+  #Finding max number of steals and player with max number of steals overall
   max_steals = 0
   for team in hash.keys
       for player in hash[team][:players]
@@ -281,5 +290,7 @@ def long_name_steals_a_ton?
   #Checking if max_steals_player is player_with_longest_name
   if longest_name == max_steals_player
       return true
+  else
+    return false
   end
 end
