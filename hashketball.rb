@@ -209,3 +209,77 @@ def big_shoe_rebounds
   end
   rebounds
 end
+
+def most_points_scored
+  hash = game_hash
+  max_points = 0
+  max_player = nil
+  for team in hash.keys
+      for player in hash[team][:players]
+          if player[:points] > max_points
+              max_points = player[:points]
+              max_player = player[:player_name]
+          end
+      end
+  end
+  max_player
+end
+
+def winning_team
+  hash = game_hash
+  home_points = 0
+  away_points = 0
+
+  #Calculating home team points
+  for player in hash[:home][:players]
+      home_points += player[:points]
+  end
+  #Calculating away team points
+  for player in hash[:away][:players]
+      away_points += player[:points]
+  end
+
+  #Comparing points and finding winner
+  if home_points > away_points
+      winner = hash[:home][:team_name]
+  else
+      winner = hash[:away][:team_name]
+  end
+  winner
+end
+
+def player_with_longest_name
+  hash = game_hash
+  longest_length = 0
+
+  for team in hash.keys
+      for player in hash[team][:players]
+          if player[:player_name].length > longest_length
+              longest_length = player[:player_name].length
+              longest_name = player[:player_name]
+          end
+      end
+  end
+  longest_name
+end
+
+def long_name_steals_a_ton?
+  hash = game_hash
+  longest_name = player_with_longest_name
+  
+  #Finding max number of steals
+  max_steals = 0
+  for team in hash.keys
+      for player in hash[team][:players]
+          if player[:steals] > max_steals
+              max_steals = player[:steals]
+              max_steals_player = player[:player_name]
+          end
+      end
+  end
+  
+  #Checking if max_steals_player is player_with_longest_name
+  if longest_name == max_steals_player
+      return true
+  end
+end
