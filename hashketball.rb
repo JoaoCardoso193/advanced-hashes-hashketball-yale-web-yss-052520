@@ -248,12 +248,7 @@ def winning_team
   end
 
   #Comparing points and finding winner
-  if home_points > away_points
-      winner = hash[:home][:team_name]
-  else
-      winner = hash[:away][:team_name]
-  end
-  winner
+  home_points > away_points ?  hash[:home][:team_name] : hash[:away][:team_name]
 end
 
 def player_with_longest_name
@@ -288,9 +283,5 @@ def long_name_steals_a_ton?
   end
   
   #Checking if max_steals_player is player_with_longest_name
-  if longest_name == max_steals_player
-      return true
-  else
-    return false
-  end
+  longest_name == max_steals_player
 end
